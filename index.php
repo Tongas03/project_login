@@ -1,6 +1,3 @@
 <?php
-// ============================
-//  Requires and Includes
-// ============================
-require_once('./public/index.php');
 
+require './public/index.php';

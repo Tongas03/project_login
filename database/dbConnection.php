@@ -10,7 +10,7 @@ class dbConecction
 
     public function __construct()
     {
-        $connection = file_get_contents('../database/connection.ini');
+        $connection = file_get_contents(__DIR__.'/config/connection.ini');
 
         if (!$setting = parse_ini_string($connection, true)) {
             throw new exception('No se puede abrir el archivo ' . $connection . '.');
