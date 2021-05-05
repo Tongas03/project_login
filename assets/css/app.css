@@ -1,17 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
 html {
     background-color: #eff6fa;
 }
 
 body {
-    font-family: "Poppins", sans-serif;
     height: 100vh;
 }
 
-a {
-    color: #92badd;
-    display: inline-block;
+nav {
+    background-color: #151515;
+    padding: 5px 40px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+nav ul li.items {
+    width: auto;
+    margin: 0 16px;
+    text-align: center;
+}
+
+nav ul li.logo {
+    flex: 1;
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+    cursor: default;
+    user-select: none;
+}
+
+nav ul li a {
+    color: white;
     text-decoration: none;
-    font-weight: 400;
 }
 
 h2 {
@@ -35,7 +70,6 @@ h2 {
 }
 
 #formContent {
-    -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;
     padding: 30px;
@@ -43,7 +77,6 @@ h2 {
     max-width: 450px;
     position: relative;
     padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
 }
@@ -53,7 +86,6 @@ h2 {
     border-top: 1px solid #dce8f1;
     padding: 25px;
     text-align: center;
-    -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
 }
 
@@ -78,16 +110,9 @@ input[type=reset] {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
     box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-    -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
 }
 
 input[type=button]:hover,
@@ -99,10 +124,6 @@ input[type=reset]:hover {
 input[type=button]:active,
 input[type=submit]:active,
 input[type=reset]:active {
-    -moz-transform: scale(0.95);
-    -webkit-transform: scale(0.95);
-    -o-transform: scale(0.95);
-    -ms-transform: scale(0.95);
     transform: scale(0.95);
 }
 
@@ -118,12 +139,6 @@ input[type=text] {
     margin: 5px;
     width: 85%;
     border: 2px solid #f6f6f6;
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
 }
 
@@ -144,21 +159,4 @@ input[type=text]:placeholder {
     height: 2px;
     background-color: #56baed;
     content: "";
-    transition: width 0.2s;
-}
-
-.underlineHover:hover {
-    color: #0d0d0d;
-}
-
-.underlineHover:hover:after {
-    width: 100%;
-}
-
-*:focus {
-    outline: none;
-}
-
-#icon {
-    width: 60%;
 }

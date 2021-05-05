@@ -11,7 +11,7 @@ class Autoloader
 
             spl_autoload_register(function($file){
 
-                require '../controllers/'. $file . '.php';
+                require $file . '.php';
 
             });
 

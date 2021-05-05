@@ -1,131 +1,73 @@
 <?php
 
-// require_once '../database/dbConnection.php';
+require '../models/userModel.php';
 
-class userController 
+class userController
 {
-    private $id;
-    private $role;
-    private $name;
-    private $surname;
-    private $nick;
-    private $email;
-    private $password;
-    private $image;
-    private $token;
-
-    public function __construct($data)
+    public function index()
     {
-        $this->id = $data['id'];
-        $this->role = $data['role'];
-        $this->name = $data['name'];
-        $this->surname = $data['surname'];
-        $this->nick = $data['nick'];
-        $this->email = $data['email'];
-        $this->password = $data['password'];
-        $this->image = $data['image'];
-        $this->token = $data['token'];
+        require './resources/views/userView.php';
     }
 
-    public function index(){
-        echo 'Controller User';
+    public function newUser($data){
+
+        $user = new userModel($data);
+
+        $user->setName($data['name']);
+        $user->setSurname($data['surname']);
+        $user->setEmail($data['email']);
+        $user->setNick($data['nick']);
+        $user->setPassword($data['password']);
+
+        $response = $user->newUser();
+
+        return $response;
     }
 
-    public function insert(){
-        try {
-            $db = new dbConecction();
-            $data = $db->connection();
-            $sql = 'INSERT INTO users (role, name, surname, nick, email, password, image, token) VALUES (?,?,?,?,?,?,?,?)';
-            $stmt = $data->prepare($sql);
-            $stmt->bind_param('ssssssss', $this->role, $this->name, $this->surname, $this->nick, $this->email, $this->password, $this->image, $this->token);
-            if($stmt->execute()){
-                $result = true;
-            } else {
-                $result = false;
-            }
-            return $result;
-        } catch (ErrorException $e) {
-            $result = false;
-            return $result;
-        }
+    public function downUser($data)
+    {
+        $user = new userModel($data);
+
+        $user->setId($data['id']);
+
+        $response = $user->downUser();
+
+        return $response;
     }
 
-    public function update(){
-        try {
-            $db = new dbConecction();
-            $data = $db->connection();
-            $sql = 'UPDATE users SET role=?, name=?, surname=?, nick=?, email=?, password=?, image=?, token=? WHERE id=?';
-            $stmt = $data->prepare($sql);
-            $stmt->bind_param('issssssss', $this->id, $this->role, $this->name, $this->surname, $this->nick, $this->email, $this->password, $this->image, $this->token);
-            if ($stmt->execute()) {
-                $result = true;
-            } else {
-                $result = false;
-            }
-            return $result;
-        } catch (ErrorException $e) {
-            $result = false;
-            return $result;
-        }
+    public function updateUser($data)
+    {
+        $user = new userModel($data);
+
+        $user->setName($data['name']);
+        $user->setSurname($data['surname']);
+        $user->setEmail($data['email']);
+        $user->setNick($data['nick']);
+        $user->setPassword($data['password']);
+
+        $response = $user->updateUser();
+
+        return $response;
     }
 
-    public function delete(){
-        try {
-            $db = new dbConecction();
-            $data = $db->connection();
-            $sql = 'DELETE FROM users WHERE id=?';
-            $stmt = $data->prepare($sql);
-            $stmt->bind_param('i', $this->id);
-            if ($stmt->execute()) {
-                $result = true;
-            } else {
-                $result = false;
-            }
-            return $result;
-        } catch (ErrorException $e) {
-            $result = false;
-            return $result;
-        }
+    public function getUser($data)
+    {
+        $user = new userModel($data);
+
+        $user->setId($data['id']);
+
+        $response = $user->getOne();
+
+        return $response;
     }
 
-    public function getOne(){
-        try {
-            $db = new dbConecction();
-            $data = $db->connection();
-            $sql = 'SELECT * FROM users WHERE id=?';
-            $stmt = $data->prepare($sql);
-            $stmt->bind_param('i', $this->id);
-            if ($stmt->execute()) {
-                $result = $stmt->get_result();
-                $data = $result->fetch_assoc();
-                return $data;
-            } else {
-                $result = false;
-            }
-            return $result;
-        } catch (ErrorException $e) {
-            $result = false;
-            return $result;
-        }
-    }
+    public function getAllUsers(){
 
-    public function getAll(){
-        try {
-            $db = new dbConecction();
-            $data = $db->connection();
-            $sql = 'SELECT * FROM users';
-            $stmt = $data->prepare($sql);
-            if ($stmt->execute()) {
-                $result = $stmt->get_result();
-                $data = $result->fetch_assoc();
-                return $data;
-            } else {
-                $result = false;
-            }
-            return $result;
-        } catch (ErrorException $e) {
-            $result = false;
-            return $result;
-        }
+        $user = new userModel(null);
+
+        $response = $user->getAll();
+
+        return $response;
+
     }
 }
