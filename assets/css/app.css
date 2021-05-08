@@ -1,3 +1,7 @@
+/* ============================
+  Etiquetas nativas
+ ============================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,40 +17,21 @@ body {
     height: 100vh;
 }
 
-nav {
-    background-color: #151515;
-    padding: 5px 40px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-nav ul li {
-    padding: 15px 0;
-    cursor: pointer;
-}
-
-nav ul li.items {
-    width: auto;
-    margin: 0 16px;
-    text-align: center;
-}
-
-nav ul li.logo {
-    flex: 1;
-    color: white;
-    font-size: 23px;
-    font-weight: 600;
-    cursor: default;
-    user-select: none;
-}
-
-nav ul li a {
-    color: white;
+a {
+    color: #151515;
+    display: inline-block;
     text-decoration: none;
+    font-weight: 400;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 10px 8px 10px 8px;
+    color: #151515;
 }
 
 h2 {
@@ -55,9 +40,225 @@ h2 {
     font-weight: 600;
     text-transform: uppercase;
     display: inline-block;
-    margin: 40px 8px 10px 8px;
+    margin: 10px 8px 10px 8px;
     color: #cccccc;
 }
+
+p {
+    text-align: center;
+    font-size: 8x;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 10px 8px 10px 8px;
+    color: #151515;
+}
+
+
+/* ============================
+  HEADER
+ ============================ */
+
+header {
+    background-color: #151515;
+    padding: 5px 40px;
+    position: relative;
+    width: 100%;
+}
+
+.navHeader ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.navHeader ul li {
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.navHeader ul li.items {
+    position: relative;
+    width: auto;
+    margin: 0 16px;
+    text-align: center;
+}
+
+.navHeader ul li.items:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 5px;
+    height: 2px;
+    width: 100%;
+    background: #33ffff;
+    opacity: 0;
+}
+
+.navHeader ul li.items:hover:after {
+    opacity: 1;
+    bottom: 8px;
+}
+
+.navHeader ul li.logo {
+    flex: 1;
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+    cursor: default;
+    user-select: none;
+}
+
+.navHeader ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+
+/* ============================
+  FOOTER
+ ============================ */
+
+footer {
+    background-color: #151515;
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerTop {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.navBox,
+.socialBox {
+    flex: 1;
+    text-align: center;
+    width: 100%;
+}
+
+.navFooter ul,
+.socialBox ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.navFooter ul li,
+.socialBox ul li {
+    padding: 0 10px;
+}
+
+.navFooter ul li a,
+.socialBox ul li a {
+    color: white;
+}
+
+.footerBottom {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.footerBottom p {
+    flex: 1;
+    color: white;
+    text-align: center;
+}
+
+
+/* ============================
+  MAIN
+============================ */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 25px 25px;
+}
+
+.titleTable,
+.tableUser {
+    flex: 1;
+    padding: 20px 20px;
+}
+
+table {
+    display: grid;
+    border-collapse: collapse;
+    min-width: 100%;
+    grid-template-columns: minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr);
+}
+
+thead,
+tbody,
+tr {
+    display: contents;
+}
+
+th,
+td {
+    padding: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #151515;
+    text-align: left;
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: white;
+}
+
+th:last-child {
+    border: 0;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #808080;
+}
+
+td:last-child {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+td:last-child span {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+tr:nth-child(even) td {
+    background: #f8f6ff;
+}
+
+
+/* ============================
+Clases LOGIN / REGISTER
+============================ */
 
 .wrapper {
     display: flex;
@@ -69,9 +270,9 @@ h2 {
     padding: 20px;
 }
 
-#formContent {
+.formContent {
     border-radius: 10px 10px 10px 10px;
-    background: #fff;
+    background: white;
     padding: 30px;
     width: 90%;
     max-width: 450px;
@@ -81,27 +282,66 @@ h2 {
     text-align: center;
 }
 
-#formFooter {
+.formHeader {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #dce8f1;
+    padding: 25px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title,
+.headerImg {
+    flex: 1;
+}
+
+.formFooter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     background-color: #f6f6f6;
     border-top: 1px solid #dce8f1;
     padding: 25px;
-    text-align: center;
     border-radius: 0 0 10px 10px;
 }
 
-h2.inactive {
-    color: #cccccc;
+.formFooter a {
+    flex: 1;
 }
 
-h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
+.underlineHover:after {
+    display: block;
+    left: 0;
+    bottom: -10px;
+    width: 0;
+    height: 2px;
+    background-color: #1515;
+    content: "";
 }
+
+.underlineHover:hover {
+    color: #1515;
+}
+
+.underlineHover:hover:after {
+    width: auto;
+}
+
+
+/* ============================
+Inputs Customs
+============================ */
 
 input[type=button],
 input[type=submit],
 input[type=reset] {
-    background-color: #56baed;
+    background-color: #151515;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -118,7 +358,7 @@ input[type=reset] {
 input[type=button]:hover,
 input[type=submit]:hover,
 input[type=reset]:hover {
-    background-color: #39ace7;
+    background-color: #1515;
 }
 
 input[type=button]:active,
@@ -127,7 +367,9 @@ input[type=reset]:active {
     transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text],
+input[type=email],
+input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -144,19 +386,56 @@ input[type=text] {
 
 input[type=text]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #1515;
 }
 
 input[type=text]:placeholder {
     color: #cccccc;
 }
 
-.underlineHover:after {
-    display: block;
+
+/* ============================
+  POP UP
+ ============================ */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
     left: 0;
-    bottom: -10px;
-    width: 0;
-    height: 2px;
-    background-color: #56baed;
-    content: "";
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.popUp {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.popUp .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popUp .close:hover {
+    color: #06D85F;
+}
+
+.popUp .popUpContent {
+    max-height: 30%;
+    overflow: auto;
 }

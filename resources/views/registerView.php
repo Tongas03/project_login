@@ -1,22 +1,34 @@
+<?php
+    require './resources/layouts/headerLogin.php';
+    require './resources/layouts/popup.php';
+?>
+
 <div class="wrapper">
-    <div id="formContent">
 
+    <div class="formContent">
 
-        <form action="" method="post">
+        <div class="formHeader">
+            <div class="tittle">
+                <h1>Registro</h1>
+            </div>
 
-            <input type="text" id="name" name="name" placeholder="Nombre">
-            <input type="text" id="surname" name="surname" placeholder="Apellido">
-            <input type="text" id="nick" name="nick" placeholder="Nick">
-            <input type="email" id="email" name="email" placeholder="Email">
-            <input type="password" id="password" name="password" placeholder="Password">
-
-            <input type="submit" value="REGISTRAR">
-
-        </form>
-
-        <div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
+            <div class="headerImg">
+                <!-- <img src="assets/img/default_profile.png" alt="profile"> -->
+                <p>img</p>
+            </div>
         </div>
-        
+
+        <?php require './resources/layouts/formUser.php' ?>
+
+        <div class="formFooter">
+            <a class="underlineHover" href="/login/index">Iniciar Sesión</a>
+            <a class="underlineHover" href="#">Recuperar Contraseña</a>
+        </div>
+
     </div>
+
 </div>
+
+<?php
+    require './resources/layouts/footerLogin.php';
+?>

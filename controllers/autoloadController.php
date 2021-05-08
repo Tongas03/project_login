@@ -1,6 +1,6 @@
 <?php
 
-class Autoloader
+class autoloadController
 {
     public function register($className)
     {
@@ -11,7 +11,7 @@ class Autoloader
 
             spl_autoload_register(function($file){
 
-                require $file . '.php';
+                require_once $file . '.php';
 
             });
 

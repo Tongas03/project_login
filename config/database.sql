@@ -5,7 +5,6 @@ CREATE TABLE users(
 id          int auto_increment not null,
 name        varchar(100) not null,
 surname     varchar(100) not null,
-nick        varchar(100) not null,
 email       varchar(200) not null,
 password    varchar(200) not null,
 created_at  datetime default CURRENT_TIMESTAMP(),

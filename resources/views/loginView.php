@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
+    require './resources/layouts/headerLogin.php';
+    require './resources/layouts/popup.php';
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
+<div class="wrapper">
+    <div class="formContent">
 
-    <link rel="stylesheet" href="<?php echo BASE_PATH ?>assets/css/app.css">
+        <div class="formHeader">
+            <div class="tittle">
+                <h1>Acceso</h1>
+            </div>
 
-</head>
-
-<body>
-    <div class="wrapper">
-        <div id="formContent">
-
-            <div class="formHeader">img</div>
-
-            <form action="" method="post">
-                <input type="text" id="login" name="login" placeholder="login">
-                <input type="text" id="password" name="password" placeholder="password">
-                <input type="submit" value="Log In">
-            </form>
-
+            <div class="headerImg">
+                <!-- <img src="assets/img/default_profile.png" alt="profile"> -->
+                <p>img</p>
+            </div>
         </div>
+
+        <form id="formRegister">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" value="INGRESAR">
+        </form>
+
+        <div class="formFooter">
+            <a class="underlineHover" href="/register/index">Registrarse</a>
+            <a class="underlineHover" href="#">Recuperar Contraseña</a>
+        </div>
+
     </div>
+</div>
 
-</body>
-
-</html>
+<?php
+    require './resources/layouts/footerLogin.php';
+?>

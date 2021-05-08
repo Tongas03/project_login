@@ -1,30 +1,23 @@
 <?php
 
-require_once '../database/dbConnection.php';
+require_once './database/dbConnection.php';
 
 class userModel
 {
-    protected $id;
-    protected $name;
-    protected $surname;
-    protected $nick;
-    protected $email;
-    protected $password;
-    protected $db;
+    private $id;
+    private $name;
+    private $surname;
+    private $email;
+    private $password;
+    private $db;
 
     /**
      * Constructor
      * @param $data
      */
-    public function __construct($data)
+    public function __construct()
     {
         $this->db = new dbConecction;
-        $this->setId($data['id']);
-        $this->setName($data['name']);
-        $this->setSurname($data['surname']);
-        $this->setNick($data['nick']);
-        $this->setEmail($data['email']);
-        $this->setPassword($data['password']);
     }
 
     // ============================
@@ -92,26 +85,6 @@ class userModel
     }
 
     /**
-     * Get the value of nick
-     */
-    public function getNick()
-    {
-        return $this->nick;
-    }
-
-    /**
-     * Set the value of nick
-     *
-     * @return  self
-     */
-    public function setNick($nick)
-    {
-        $this->nick = $nick;
-
-        return $this;
-    }
-
-    /**
      * Get the value of email
      */
     public function getEmail()
@@ -158,22 +131,25 @@ class userModel
     /**
      * Add New User
      */
-    public function newUser()
+    public function addUser()
     {
         try {
             $data = $this->db->connection();
-            $sql = 'INSERT INTO users (name, surname, nick, email, password) VALUES (?,?,?,?,?,?)';
+            $sql = 'INSERT INTO users (name, surname, email, password) VALUES (?,?,?,?)';
             $stmt = $data->prepare($sql);
-            $stmt->bind_param('ssssss', $this->getName(), $this->getSurname(), $this->getNick(), $this->getEmail(), $this->getPassword());
+            $stmt->bind_param('ssss', $this->name, $this->surname, $this->email, $this->password);
             if ($stmt->execute()) {
                 $result = [
-                    'response' => true
+                    'response' => true,
+                    'data' => 'El usuario se registró con exito'
                 ];
             } else {
                 $result = [
-                    'response' => false
+                    'response' => false,
+                    'data' => 'Hubo problemas en el registro, intente de nuevo'
                 ];
             }
+            $stmt->close();
             return $result;
         } catch (ErrorException $e) {
             $result = [
@@ -191,9 +167,9 @@ class userModel
     {
         try {
             $data = $this->db->connection();
-            $sql = 'UPDATE users SET name=?, surname=?, nick=?, email=?, password=? WHERE id=?';
+            $sql = 'UPDATE users SET name=?, surname=?, email=?, password=? WHERE id=?';
             $stmt = $data->prepare($sql);
-            $stmt->bind_param('issssss', $this->getId(), $this->getName(), $this->getSurname(), $this->getNick(), $this->getEmail(), $this->getPassword());
+            $stmt->bind_param('isssss', $this->id, $this->name, $this->surname, $this->email, $this->password);
             if ($stmt->execute()) {
                 $response = [
                     'response' => true
@@ -203,6 +179,7 @@ class userModel
                     'response' => false
                 ];
             }
+            $stmt->close();
             return $response;
         } catch (ErrorException $e) {
             $response = [
@@ -222,16 +199,19 @@ class userModel
             $data = $this->db->connection();
             $sql = 'DELETE FROM users WHERE id=?';
             $stmt = $data->prepare($sql);
-            $stmt->bind_param('i', $this->getId());
+            $stmt->bind_param('i', $this->id);
             if ($stmt->execute()) {
                 $response = [
-                    'response' => true
+                    'response' => true,
+                    'data' => 'Se dió de baja el usuario'
                 ];
             } else {
                 $response = [
-                    'response' => false
+                    'response' => false,
+                    'data' => 'No se dió de baja el usuario'
                 ];
             }
+            $stmt->close();
             return $response;
         } catch (ErrorException $e) {
             $response = [
@@ -251,7 +231,7 @@ class userModel
             $data = $this->db->connection();
             $sql = 'SELECT * FROM users WHERE id=?';
             $stmt = $data->prepare($sql);
-            $stmt->bind_param('i', $this->getId());
+            $stmt->bind_param('i', $this->id);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $data = $result->fetch_assoc();
@@ -261,9 +241,11 @@ class userModel
                 ];
             } else {
                 $response = [
-                    'response' => false
+                    'response' => false,
+                    'data' => 'No se puede mostrar el usuario'
                 ];
             }
+            $stmt->close();
             return $response;
         } catch (ErrorException $e) {
             $response = [
@@ -292,9 +274,11 @@ class userModel
                 ];
             } else {
                 $response = [
-                    'response' => false
+                    'response' => false,
+                    'data' => 'No se puede mostrar los usuarios'
                 ];
             }
+            $stmt->close();
             return $response;
         } catch (ErrorException $e) {
             $response = [

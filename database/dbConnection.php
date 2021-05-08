@@ -8,12 +8,15 @@ class dbConecction
     private $schema;
     private $port;
 
-    private function __construct()
+    public function __construct()
     {
-        $connection = file_get_contents(__DIR__.'/config/connection.ini');
+        $connection = file_get_contents('./config/connection.ini');
 
         if (!$setting = parse_ini_string($connection, true)) {
-            throw new exception('No se puede abrir el archivo ' . $connection . '.');
+            $response = [
+                'data' => 'No se puede abrir el archivo ' . $connection . '.'
+            ];
+            return $response;
         }
 
         $this->host =$setting["database"]["host"] ;
@@ -29,13 +32,19 @@ class dbConecction
 
             $connection = new mysqli($this->host, $this->username, $this->password, $this->schema, $this->port);
             if ($connection->errno) {
-                echo "FALLO EN CONEXION A BASE DE DATOS: " . mysqli_connect_error();
+                $response = [
+                    'data' => 'FALLO EN CONEXION A BASE DE DATOS: ' . mysqli_connect_error()
+                ];
+                return $response;
             } else {
                 $connection->query("SET NAMES 'utf8'");
                 return $connection;
             }
-        } catch (Throwable $th) {
-            throw $th;
+        } catch (ErrorException $e) {
+            $response = [
+                'data' => $e
+            ];
+            return $response;
         }
     }
 }

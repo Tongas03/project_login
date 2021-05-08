@@ -1,64 +1,69 @@
 <?php
 
-require '../models/userModel.php';
+require_once './models/userModel.php';
+require_once './controllers/sessionController.php';
 
 class userController
 {
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new sessionController();
+    }
+
     public function index()
     {
-        require './resources/views/userView.php';
+        $this->session::init();
+
+        if (isset($_SESSION['token'])) {
+            var_dump($_SESSION);
+            require_once './resources/views/userView.php';
+        } else {
+            $this->session::finish();
+        }
     }
 
-    public function newUser($data){
-
-        $user = new userModel($data);
-
-        $user->setName($data['name']);
-        $user->setSurname($data['surname']);
-        $user->setEmail($data['email']);
-        $user->setNick($data['nick']);
-        $user->setPassword($data['password']);
-
-        $response = $user->newUser();
-
-        return $response;
-    }
-
-    public function downUser($data)
+    public function downUser()
     {
-        $user = new userModel($data);
+        $data = $_POST;
+
+        $user = new userModel();
 
         $user->setId($data['id']);
 
         $response = $user->downUser();
 
-        return $response;
+        echo json_encode($response);
     }
 
-    public function updateUser($data)
+    public function updateUser()
     {
-        $user = new userModel($data);
+        $data = $_POST;
+
+        $user = new userModel();
 
         $user->setName($data['name']);
         $user->setSurname($data['surname']);
         $user->setEmail($data['email']);
-        $user->setNick($data['nick']);
         $user->setPassword($data['password']);
 
         $response = $user->updateUser();
 
-        return $response;
+        echo json_encode($response);
     }
 
-    public function getUser($data)
+    public function getUser()
     {
-        $user = new userModel($data);
+        $data = $_POST;
+
+        $user = new userModel();
 
         $user->setId($data['id']);
 
         $response = $user->getOne();
 
-        return $response;
+        echo json_encode($response);
     }
 
     public function getAllUsers(){
@@ -67,7 +72,7 @@ class userController
 
         $response = $user->getAll();
 
-        return $response;
+        echo json_encode($response);
 
     }
 }

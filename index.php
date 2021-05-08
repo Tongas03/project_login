@@ -3,17 +3,15 @@
 //  Requires and Includes
 // ============================
 
-// require_once('../database/connection.php');
-
-require 'controllers/autoloadController.php';
-require 'controllers/errorController.php';
-require 'config/config.php';
+require_once 'controllers/autoloadController.php';
+require_once 'controllers/errorController.php';
+require_once 'config/config.php';
 
 // ============================
 //  Controller's Logic
 // ============================
 
-$autoload = new Autoloader();
+$autoload = new autoloadController();
 
 //Controlar los parametros para mandar a raiz
 if (isset($_GET['controller'])){
@@ -42,16 +40,12 @@ if (isset($_GET['controller'])){
                 
             }
             else  {
-                
                 showError();
-                
             }
         }
 
     } else {
-
         showError();
-        
     }
 } else if (!isset($_GET['controller']) && !isset($_GET['action'])) {
 
@@ -67,7 +61,7 @@ if (isset($_GET['controller'])){
 } 
 
 // ============================
-//  Function
+//  Functions
 // ============================
 
 // Llamar al controlador de Error
