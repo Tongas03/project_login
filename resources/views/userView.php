@@ -16,7 +16,7 @@ require './resources/layouts/header.php';
 <script src="<?php echo BASE_PATH ?>assets/js/tableUser.js"></script>
 
 <?php
-    require './resources/layouts/popup.php';
     require './resources/layouts/cardProfile.php';
+    require './resources/layouts/popup.php';
     require './resources/layouts/footer.php';
 ?>

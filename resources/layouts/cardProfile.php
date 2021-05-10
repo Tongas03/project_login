@@ -7,7 +7,9 @@
 
             <div class="cardSide">
                 <div class="cardImg">
-                    <p>IMG</p>
+                    <picture>
+                        <img src="../../assets/img/default_profile.png" alt="default_profile">
+                    </picture>
                 </div>
                 <div class="cardDates">
                 </div>

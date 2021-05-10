@@ -1,6 +1,6 @@
 <?php
-    require './resources/layouts/headerLogin.php';
-    require './resources/layouts/popup.php';
+require './resources/layouts/headerLogin.php';
+require './resources/layouts/popup.php';
 ?>
 
 <div class="wrapper">
@@ -13,8 +13,9 @@
             </div>
 
             <div class="headerImg">
-                <!-- <img src="assets/img/default_profile.png" alt="profile"> -->
-                <p>img</p>
+                <picture>
+                    <img src="../../assets/img/default_profile.png" alt="default_profile">
+                </picture>
             </div>
         </div>
 
@@ -30,5 +31,5 @@
 </div>
 
 <?php
-    require './resources/layouts/footerLogin.php';
+require './resources/layouts/footerLogin.php';
 ?>
