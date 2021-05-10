@@ -2,17 +2,26 @@
   Table User
 ============================ */
 
-.titleTable,
-.divTable {
+.titleTable {
+    display: flex;
+    flex-direction: column;
     padding: 20px 20px;
 }
 
 table {
     display: grid;
     border-collapse: collapse;
-    min-width: 100%;
-    grid-template-columns: minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr);
+    width: 90%;
+    /* grid-template-columns: minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr); */
+    grid-template-columns: minmax(25%, 1.67fr) minmax(25%, 1.67fr) minmax(25%, 1.67fr) minmax(25%, 1.67fr) minmax(25%, 1.67fr);
 }
+
+
+/* @media screen and (max-width: 600px) {
+    .table {
+        grid-template-columns: minmax(1, 1.67fr) minmax(1, 1.67fr) minmax(1, 1.67fr) minmax(1, 1.67fr) minmax(1, 1.67fr);
+    }
+} */
 
 thead,
 tbody,

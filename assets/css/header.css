@@ -17,6 +17,12 @@ header {
     justify-content: center;
 }
 
+@media screen and (max-width: 600px) {
+    .navHeader ul {
+        display: block;
+    }
+}
+
 .navHeader ul li {
     padding: 15px 0;
     cursor: pointer;

@@ -11,6 +11,12 @@ footer {
     flex-direction: column;
 }
 
+@media screen and (max-width: 600px) {
+    .footer {
+        display: block;
+    }
+}
+
 .footerTop {
     display: flex;
     flex-wrap: wrap;
