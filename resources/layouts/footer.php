@@ -7,7 +7,7 @@
                 <ul>
                     <li><a href="/home/index"><span class="fas fa-home"></span> INICIO</a></li>
                     <li><a href="/user/index"><span class="fas fa-users"></span> USUARIOS</a></li>
-                    <li><a href="/session/finish"><span class="fas fa-power-off"></span> SALIR</a></li>
+                    <li><a href="/login/index"><span class="fas fa-power-off"></span> SALIR</a></li>
                 </ul>
             </nav>
         </div>
@@ -33,7 +33,5 @@
 </body>
 <!-- IMPORT Para poder usar font awesome -->
 <script src="https://kit.fontawesome.com/c5b7334cb3.js" crossorigin="anonymous"></script>
-
-<script src="<?php echo BASE_PATH ?>assets/js/app.js"></script>
 
 </html>

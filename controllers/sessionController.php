@@ -50,14 +50,13 @@ class sessionController {
     public static function finish() {
         
         session_start();
-        
-        unset($_SESSION['token']);
 
-        unset($_SESSION['token_verify']);
+        if (isset($_SESSION)) {
+
+            session_unset();
+        }
 
         session_destroy();
-
-        header('Location: /login/index');
 
     }
 }

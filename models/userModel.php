@@ -129,7 +129,7 @@ class userModel
     // ============================
 
     /**
-     * Add New User
+     * Anadir o Registrar un Usuario a Base de Datos
      */
     public function addUser()
     {
@@ -138,7 +138,8 @@ class userModel
             $sql = 'INSERT INTO users (name, surname, email, password) VALUES (?,?,?,?)';
             $stmt = $data->prepare($sql);
             $stmt->bind_param('ssss', $this->name, $this->surname, $this->email, $this->password);
-            if ($stmt->execute()) {
+            $stmt->execute();
+            if ($stmt->affected_rows) {
                 $result = [
                     'response' => true,
                     'data' => 'El usuario se registró con exito'
@@ -161,22 +162,25 @@ class userModel
     }
 
     /**
-     * Update an User
+     * Actualizar un Usuario de Base de datos por ID
      */
     public function updateUser()
     {
         try {
             $data = $this->db->connection();
-            $sql = 'UPDATE users SET name=?, surname=?, email=?, password=? WHERE id=?';
+            $sql = 'UPDATE users SET name=?, surname=?, email=? WHERE id=?';
             $stmt = $data->prepare($sql);
-            $stmt->bind_param('isssss', $this->id, $this->name, $this->surname, $this->email, $this->password);
-            if ($stmt->execute()) {
+            $stmt->bind_param('sssi', $this->name, $this->surname, $this->email, $this->id);
+            $stmt->execute();
+            if ($stmt->affected_rows) {
                 $response = [
-                    'response' => true
+                    'response' => true,
+                    'data' => 'El usuario se modificó con exito'
                 ];
             } else {
                 $response = [
-                    'response' => false
+                    'response' => false,
+                    'data' => 'No se pudo moficar el usuario'
                 ];
             }
             $stmt->close();
@@ -191,7 +195,7 @@ class userModel
     }
 
     /**
-     * Delete an User
+     * ELiminar un Usuario de Base de Datos por ID
      */
     public function downUser()
     {
@@ -200,7 +204,8 @@ class userModel
             $sql = 'DELETE FROM users WHERE id=?';
             $stmt = $data->prepare($sql);
             $stmt->bind_param('i', $this->id);
-            if ($stmt->execute()) {
+            $stmt->execute();
+            if ($stmt->affected_rows) {
                 $response = [
                     'response' => true,
                     'data' => 'Se dió de baja el usuario'
@@ -223,13 +228,13 @@ class userModel
     }
 
     /**
-     * Get One User
+     * Extraer un Usuarios de Base de Datos por ID
      */
     public function getOne()
     {
         try {
             $data = $this->db->connection();
-            $sql = 'SELECT * FROM users WHERE id=?';
+            $sql = 'SELECT id, name, surname, email FROM users WHERE id=?';
             $stmt = $data->prepare($sql);
             $stmt->bind_param('i', $this->id);
             if ($stmt->execute()) {
@@ -257,17 +262,17 @@ class userModel
     }
 
     /**
-     * Get All Users
+     * Extraer todos los usuarios de Base de Datos
      */
     public function getAll()
     {
         try {
             $data = $this->db->connection();
-            $sql = 'SELECT * FROM users';
+            $sql = 'SELECT id, name, surname, email FROM users';
             $stmt = $data->prepare($sql);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                $data = $result->fetch_assoc();
+                $data = $result->fetch_all();
                 $response = [
                     'response' => true,
                     'data' => $data
@@ -288,5 +293,4 @@ class userModel
             return $response;
         }
     }
-
 }

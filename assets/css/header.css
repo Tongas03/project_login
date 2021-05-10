@@ -1,0 +1,61 @@
+/* ============================
+  HEADER
+ ============================ */
+
+header {
+    background-color: #151515;
+    padding: 5px 40px;
+    position: relative;
+    width: 100%;
+}
+
+.navHeader ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.navHeader ul li {
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.navHeader ul li.items {
+    position: relative;
+    width: auto;
+    margin: 0 16px;
+    text-align: center;
+}
+
+.navHeader ul li.items:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 5px;
+    height: 2px;
+    width: 100%;
+    background: #33ffff;
+    opacity: 0;
+}
+
+.navHeader ul li.items:hover:after {
+    opacity: 1;
+    bottom: 8px;
+}
+
+.navHeader ul li.logo {
+    flex: 1;
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+    cursor: default;
+    user-select: none;
+}
+
+.navHeader ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}

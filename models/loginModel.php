@@ -5,7 +5,7 @@ require_once './controllers/sessionController.php';
 
 class loginModel
 {
-    
+
     private $email;
     private $password;
     private $session;
@@ -19,7 +19,7 @@ class loginModel
 
     /**
      * Get the value of email
-     */ 
+     */
     public function getEmail()
     {
         return $this->email;
@@ -29,7 +29,7 @@ class loginModel
      * Set the value of email
      *
      * @return  self
-     */ 
+     */
     public function setEmail($email)
     {
         $this->email = $email;
@@ -39,7 +39,7 @@ class loginModel
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -49,7 +49,7 @@ class loginModel
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -57,6 +57,10 @@ class loginModel
         return $this;
     }
 
+
+    /**
+     * Buscar un Usuario en Base de Datos y comprobar datos
+     */
     public function checkUser()
     {
         try {
@@ -67,7 +71,7 @@ class loginModel
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $data = $result->fetch_assoc();
-                if ($this->checkPassword($data)){
+                if ($this->checkPassword($data)) {
                     $response = [
                         'response' => true,
                         'data' => 'Redireccionando'
@@ -95,16 +99,17 @@ class loginModel
         }
     }
 
-    private function checkPassword($data)    {
+    private function checkPassword($data)
+    {
+        if (isset($data)) {
+            if (password_verify($this->password, $data['password'])) {
 
-        if (password_verify($this->password, $data['password'])) {
+                $this->session::init();
 
-            $this->session::init();
+                $this->session::createToken();
 
-            $this->session::createToken();
-
-            return true;
-
+                return true;
+            }
         } else {
 
             return false;

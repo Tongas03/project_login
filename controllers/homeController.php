@@ -17,11 +17,13 @@ class homeController
 
         if(isset($_SESSION['token'])){
 
-            var_dump($_SESSION);
             require_once './resources/views/homeView.php';
         } 
         else {
+
             $this->session::finish();
+
+            header('Location: /login/index');
         }
             
     }

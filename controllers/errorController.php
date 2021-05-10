@@ -4,12 +4,16 @@ require_once './controllers/sessionController.php';
 
 class errorController
 {
+    private $session;
+
+    public function __construct()
+    {
+        $this->session = new sessionController();
+    }
 
     public function index(){
-        
-        if (isset($_SESSION)){
-            session_destroy();
-        }
+
+        $this->session::finish();
 
         require_once './resources/views/errorView.php';
     }

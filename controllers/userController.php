@@ -17,10 +17,14 @@ class userController
         $this->session::init();
 
         if (isset($_SESSION['token'])) {
-            var_dump($_SESSION);
+
             require_once './resources/views/userView.php';
+
         } else {
+
             $this->session::finish();
+
+            header('Location: /login/index');
         }
     }
 
@@ -43,10 +47,10 @@ class userController
 
         $user = new userModel();
 
+        $user->setId($data['id']);
         $user->setName($data['name']);
         $user->setSurname($data['surname']);
         $user->setEmail($data['email']);
-        $user->setPassword($data['password']);
 
         $response = $user->updateUser();
 
@@ -55,6 +59,7 @@ class userController
 
     public function getUser()
     {
+
         $data = $_POST;
 
         $user = new userModel();
@@ -68,7 +73,7 @@ class userController
 
     public function getAllUsers(){
 
-        $user = new userModel(null);
+        $user = new userModel();
 
         $response = $user->getAll();
 

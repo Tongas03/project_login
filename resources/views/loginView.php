@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <form id="formRegister">
+        <form id="formLogin">
             <input type="email" id="email" name="email" placeholder="Email" required>
             <input type="password" id="password" name="password" placeholder="Contraseña" required>
             <input type="submit" value="INGRESAR">
